@@ -6,7 +6,6 @@
     <title>Colposcopy Image Segmentation App</title>
 
     <style>
-        /* Your existing styles go here */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
@@ -35,6 +34,15 @@
             width: 100%;
         }
 
+        progress {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #uploadPercentage {
+            margin-top: 10px;
+        }
+
         button {
             background-color: #4caf50;
             color: white;
@@ -57,6 +65,7 @@
     <form id="uploadForm">
         <input type="file" id="fileInput" accept="image/*" required>
         <progress id="uploadProgress" value="0" max="100"></progress>
+        <div id="uploadPercentage">0%</div>
         <button type="button" onclick="uploadFile()">Segment Image</button>
     </form>
 
@@ -65,6 +74,7 @@
             var fileInput = document.getElementById('fileInput');
             var file = fileInput.files[0];
             var progress = document.getElementById('uploadProgress');
+            var uploadPercentage = document.getElementById('uploadPercentage');
 
             if (file) {
                 var formData = new FormData();
@@ -74,8 +84,9 @@
 
                 xhr.upload.addEventListener('progress', function (event) {
                     if (event.lengthComputable) {
-                        var percentage = (event.loaded / event.total) * 100;
+                        var percentage = Math.round((event.loaded / event.total) * 100);
                         progress.value = percentage;
+                        uploadPercentage.innerHTML = percentage + '%';
                     }
                 });
 
@@ -96,15 +107,12 @@
             };
 
 
-                
-            xhr.open('POST', '/segment', true);
-            console.log('Before xhr.send');
-            xhr.send(formData);
-            console.log('After xhr.send');
-
+                xhr.open('POST', '/segment', true);
+                console.log('Before xhr.send');
+                xhr.send(formData);
+                console.log('After xhr.send');
             }
         }
     </script>
 </body>
-</html>
 </html>
