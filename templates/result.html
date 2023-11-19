@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentation Result</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        .image-container img {
+            height: 400px;
+            width: 400px;
+            margin-right: 10px;
+        }
+
+        .image-label {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Segmentation Result</h1>
+    
+    <div class="image-container">
+        <div>
+            <img src="{{ original_image }}" alt="Uploaded Image">
+            <p class="image-label">Uploaded Image</p>
+        </div> &nbsp&nbsp
+
+        <!-- <div>
+            <img src="{{ segmented_image }}" alt="Predicted Mask of Image">
+            <p class="image-label">Predicted Mask of Image</p>
+        </div> -->
+
+        <div>
+            <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image">
+            <p class="image-label">Segmented Area in Image</p>
+        </div>
+    </div>
+</body>
+</html>
