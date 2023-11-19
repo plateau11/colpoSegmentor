@@ -6,6 +6,7 @@
     <title>Colposcopy Image Segmentation App</title>
 
     <style>
+        /* Your existing styles go here */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
@@ -53,9 +54,57 @@
 </head>
 <body>
     <h1>Colposcopy Image Segmentation App</h1>
-    <form action="/segment" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Segment Image</button>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" accept="image/*" required>
+        <progress id="uploadProgress" value="0" max="100"></progress>
+        <button type="button" onclick="uploadFile()">Segment Image</button>
     </form>
+
+    <script>
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            var progress = document.getElementById('uploadProgress');
+
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.upload.addEventListener('progress', function (event) {
+                    if (event.lengthComputable) {
+                        var percentage = (event.loaded / event.total) * 100;
+                        progress.value = percentage;
+                    }
+                });
+
+                xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Parse the HTML content from the server response
+                    var parser = new DOMParser();
+                    var htmlDocument = parser.parseFromString(xhr.responseText, 'text/html');
+
+                    // Replace the current document's body with the content of result.html
+                    document.body.innerHTML = htmlDocument.body.innerHTML;
+                    
+                    console.log('Result.html loaded successfully');
+                } else {
+                    // Handle errors
+                    console.error('Error during upload:', xhr.status, xhr.statusText);
+                }
+            };
+
+
+                
+            xhr.open('POST', '/segment', true);
+            console.log('Before xhr.send');
+            xhr.send(formData);
+            console.log('After xhr.send');
+
+            }
+        }
+    </script>
 </body>
+</html>
 </html>
