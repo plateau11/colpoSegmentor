@@ -38,9 +38,9 @@
             text-align: center;
         }
 
-        @media (min-width: 600px) {
-            .image-container {
-                flex-direction: row;
+        @media (max-width: 400px) {
+            .image-container img {
+                max-width: 80%; /* Adjust the percentage based on your preference */
             }
         }
     </style>
@@ -55,7 +55,7 @@
         </div>
 
         <div>
-              <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image">
+            <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image">
             <p class="image-label">Segmented Area in Image</p>
         </div>
     </div>
