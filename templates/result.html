@@ -10,27 +10,38 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 10px;
         }
 
-        h2 {
-            margin-top: 20px;
+        h1 {
+            margin-top: 10px;
         }
 
         .image-container {
             display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
+            flex-direction: column;
             align-items: center;
+            margin-top: 10px;
+        }
+
+        .image-container div {
+            margin-bottom: 20px;
         }
 
         .image-container img {
-            height: 400px;
-            width: 400px;
+            max-width: 100%;
+            height: auto;
             margin-right: 10px;
         }
 
         .image-label {
             text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            .image-container {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
@@ -41,12 +52,7 @@
         <div>
             <img src="{{ original_image }}" alt="Uploaded Image">
             <p class="image-label">Uploaded Image</p>
-        </div> &nbsp&nbsp
-
-        <!-- <div>
-            <img src="{{ segmented_image }}" alt="Predicted Mask of Image">
-            <p class="image-label">Predicted Mask of Image</p>
-        </div> -->
+        </div>
 
         <div>
             <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image">
