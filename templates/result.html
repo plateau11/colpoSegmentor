@@ -16,21 +16,25 @@
             margin-top: 20px;
         }
 
-        .image-container {
-            display: flex;
+        .image-table-container {
             margin-top: 10px;
-            width: 800px; /* Set a fixed width for the container */
+            display: flex;
+            justify-content: center;
+            margin-left: 20%; /* Adjust the margin-left as needed */
         }
 
-        .image-container img {
+        table.image-table {
+            width: 800px; /* Set a fixed width for the table */
+        }
+
+        table.image-table td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        table.image-table img {
             height: 400px;
             width: 400px;
-            margin-right: 10px;
-        }
-
-        .image-container div {
-            display: flex;
-            flex-direction: column;
         }
 
         .image-label {
@@ -41,16 +45,20 @@
 <body>
     <h1>Segmentation Result</h1>
     
-    <div class="image-container">
-        <div>
-            <img src="{{ original_image }}" alt="Uploaded Image" height="300px" width="300px">
-            <p class="image-label">Uploaded Image</p>
-        </div>
+    <div class="image-table-container">
+        <table class="image-table">
+            <tr>
+                <td>
+                    <img src="{{ original_image }}" alt="Uploaded Image" height="400px" width="400px">
+                    <p class="image-label">Uploaded Image</p>
+                </td>
 
-        <div>
-            <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image" height="300px" width="300px">
-            <p class="image-label">Segmented Area in Image</p>
-        </div>
+                <td>
+                    <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image" height="400px" width="400px">
+                    <p class="image-label">Segmented Area in Image</p>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
