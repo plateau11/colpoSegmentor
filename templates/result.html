@@ -5,21 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Segmentation Result</title>
 </head>
+
+<script>
+
+</script>
+
 <body>
     
     <a href="{{url_for('index')}}" style="margin-right: 1200px;">Home</a>
     <br><br><br>
 
     <h1>Segmentation Result</h1>
+    <br><br>
 
-    <div>
-        <img src="{{ original_image }}" alt="Uploaded Image" height="250px" width="300px">
-        <p>Uploaded Image</p>
+
+    <div style="display: flex;;">
+        <figure style="flex: 1;">
+            <img src="{{ original_image }}" alt="Image 1" style="width: 100%; height: auto;">
+            <figcaption style="font-weight: 10px;">Uploaded Image</figcaption>
+        </figure>
+
+        <figure style="flex: 1;">
+            <img src="{{ image_with_rectangles }}" alt="Image 2" style="width: 100%; height: auto;">
+            <figcaption>ROI Detected</figcaption>
+        </figure>
+
+        <figure style="flex: 1;">
+            <img src="{{ final_segmentation }}" alt="Image 3" style="width: 100%; height: auto;">
+            <figcaption>Segmented Image</figcaption>
+        </figure>
     </div>
 
-    <div>
-        <img src="{{ image_with_rectangles }}" alt="Segmented Area in Image" height="250px" width="300px">
-        <p>Segmented Area in Image</p>
-    </div>
+      
+      
+
 </body>
 </html>
